@@ -1,6 +1,10 @@
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from pandas import DataFrame
+
+excelfile=r"/home/ec2-user/environment/AssignmentOne/Assignment 1 with only 50 datapoints.xlsx";
 
 def readExcelSheet1(excelfile):
     from pandas import read_excel
@@ -67,12 +71,11 @@ def Apply1DHistogramClassifier(queries,HF,HM,xmin,xmax):
     resultprob[indicesM]=probM[indicesM];
     return resultlabel, resultprob
     
-excelfile=r"/home/ec2-user/environment/AssignmentOne/Daniel Ruatta - Assignment 1.xlsx";
 
 sheets=getSheetNames(excelfile);sheets
 
 data=readExcel(excelfile)
-X=np.array(data[:,0]+data[:,1],dtype=float)
+X=np.array(data[:,0]*12+data[:,1],dtype=float)
 T=np.array([str(g) for g in data[:,2]])
 
 queries=((readExcel(excelfile,
@@ -105,6 +108,7 @@ plt.ylabel('Count')
 plt.xticks(bincenters, bincenters.astype('int32'), fontsize=10)
 plt.legend()
 plt.show()
+plt.savefig('Histogram Plot.svg')
 
 [resultHlabel, resultHprob]=Apply1DHistogramClassifier(queries,HF,HM,xmin,xmax)
 
@@ -117,3 +121,5 @@ print '\n' 'xmax = ', xmax
 print '\n' "Program complete."
 
 print '\n', queries
+
+print '\n' "The mean"
