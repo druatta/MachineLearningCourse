@@ -11,7 +11,6 @@ FirstColumn = 1
 LastColumn = 1
 
 
-
 def ReadExcelSheet():
     from pandas import read_excel
     return (read_excel(ExcelFileWithData)).values
@@ -25,3 +24,14 @@ def ReadExcelRange():
     Values = (read_excel(ExcelFileWithData, FirstSheet, header = None)).values;
     return Values[FirstRow - 1: LastRow, FirstColumn - 1:LastColumn]
     
+def ReadExcelData(**Arguments):
+    if Arguments is not None:
+        ExcelData = ReadExcelRange(**Arguments)
+    else:
+        ExcelData = ReadExcelSheet()
+    if ExcelData.shape == (1,1):
+        return ExcelData[0,0]
+    elif (ExcelData.shape)[0] == 1:
+        return ExcelData[0]
+    else:
+        return ExcelData
