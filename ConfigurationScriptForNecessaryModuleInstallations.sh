@@ -19,6 +19,7 @@ pip install --user --upgrade --force-reinstall pip
 pip install wheel --user
 pip install --user --ignore-installed pandas
 pip install -I --upgrade sympy -t /home/ec2-user/sympy
+pip install -user xlrd
 
 cp -R /usr/lib64/python2.7/dist-packages/numpy /home/ec2-user/numpy
 cp -R /usr/lib64/python2.7/dist-packages/scipy /home/ec2-user/scipy
